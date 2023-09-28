@@ -10,7 +10,7 @@ let result = null;
 let operatorCount = 0;
 let lastInputIsOperator = true;
 
-document.getElementById("clear").onclick = reset;
+document.getElementById("clearAll").onclick = reset;
 
 function reset() {
     let display = document.getElementById("inputDisplay");
@@ -22,14 +22,35 @@ function reset() {
 }
 
 document.getElementById("percent").onclick = percentage;
-    
-function percentage(){
+
+function percentage() {
   let display = document.getElementById("inputDisplay");
-  let storedDisplay = document.getElementById("storedDisplay");
-  let result = (result/100);
-  display.textContent = result;
-  expression = "";
-  storedDisplay.textContent = "";
+  let result = parseFloat(display.textContent)
+
+  if (!isNaN(result)){
+    result = (result / 100);
+    display.textContent = result;
+    expression = result;
+  }
+}
+
+document.getElementById("convert").onclick = change;
+
+function change () {
+  let display = document.getElementById("inputDisplay");
+  let result = parseFloat(display.textContent)
+
+  if (!isNaN(result)){
+    result = result * -1;
+    display.textContent = result;
+    expression = result;
+  }
+}
+
+document.getElementById("clear").onclick = clearCurrent;
+
+function clearCurrent (){
+
 }
 
 const display = document.getElementById("inputDisplay");
@@ -41,7 +62,7 @@ buttons.forEach(function (button) {
       expression += button.textContent;
       display.innerHTML = expression;
       lastInputIsOperator = false;
-    } else if (!lastInputIsOperator) { // Check if a number has been pressed
+    } else if (!lastInputIsOperator) {
       if (button.classList.contains("operator")) {
         if (result !== null) {
           expression = result + button.textContent;
@@ -52,10 +73,10 @@ buttons.forEach(function (button) {
         display.innerHTML = expression;
         lastInputIsOperator = true;
       } else if (button.id === "decimal") {
-        if (!expression.includes(".")) { // Check if there's already a decimal point
+        if (!expression.includes(".")) { 
           expression += ".";
           display.innerHTML = expression;
-          lastInputIsOperator = false; // Allowing more numbers after decimal
+          lastInputIsOperator = false; 
         }
       }
     }
@@ -78,7 +99,7 @@ document.getElementById("equals").onclick = function calculate() {
   }
   display.textContent = result !== null ? result : "";
   expression = "";
-  lastInputIsOperator = false; // Reset the tracking variable after calculation
+  lastInputIsOperator = false; 
   
 };
 
