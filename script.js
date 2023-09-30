@@ -58,28 +58,30 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach(function (button) {
   button.addEventListener("click", function () {
-    if (button.classList.contains("number")) {
-      expression += button.textContent;
-      display.innerHTML = expression;
-      lastInputIsOperator = false;
-    } else if (!lastInputIsOperator) {
-      if (button.classList.contains("operator")) {
-        if (result !== null) {
-          expression = result + button.textContent;
-          result = null;
-        } else {
-          expression += button.textContent;
-        }
+    if (expression.length <8) {
+      if (button.classList.contains("number")) {
+        expression += button.textContent;
         display.innerHTML = expression;
-        lastInputIsOperator = true;
-      } else if (button.id === "decimal") {
-        if (!expression.includes(".")) { 
-          expression += ".";
+        lastInputIsOperator = false;
+      } else if (!lastInputIsOperator) {
+        if (button.classList.contains("operator")) {
+          if (result !== null) {
+            expression = result + button.textContent;
+            result = null;
+          } else {
+            expression += button.textContent;
+          }
           display.innerHTML = expression;
-          lastInputIsOperator = false; 
+          lastInputIsOperator = true;
+        }else if (button.id === "decimal") {
+          if (!expression.includes(".")) { 
+            expression += ".";
+            display.innerHTML = expression;
+            lastInputIsOperator = false; 
+          }
         }
-      }
-    }
+    } 
+   }
   });
 });
 
@@ -95,7 +97,7 @@ document.getElementById("equals").onclick = function calculate() {
   operator = operator[0];
   let newResult = operate(operator, a, b);
   if (newResult !== null) {
-    result = newResult;
+    result = newResult.toFixed(2);
   }
   display.textContent = result !== null ? result : "";
   expression = "";
