@@ -24,6 +24,8 @@ button:active{
     transform: translateY(3px);
 }
 
+button:hover {filter: brightness(120%);}
+
 #calculator {
     border: solid;
     padding: 20px;
@@ -70,8 +72,6 @@ button:active{
     flex-direction: column-reverse;
 }
 
-.number:hover {background-color: aliceblue;}
-
 
 #operators {
     display: flex;
@@ -91,18 +91,31 @@ button:active{
 }
 
 #clear {
-    color: white;
-    background: #6F6D66;
+    background-color:#FFA500;
 }
 
 #decimal {
     color: white;
-    background: #6F6D66;
+    background: rgb(89, 89, 162);
+    border-color: black;
+}
+
+#percent {
+    color: white;
+    background-color: rgb(89, 89, 162);
+    border-color: black;
+}
+
+#convert {
+    color: white;
+    background-color: rgb(89, 89, 162);
+    border-color: black;
 }
 #others {
     display: flex;
     flex-direction: column;
 }
+
 #mainButtons {
     display: flex;
     flex-direction: row-reverse;
