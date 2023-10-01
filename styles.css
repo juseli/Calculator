@@ -1,8 +1,15 @@
 @font-face {
     font-family: 'digital';
-    src: url(fonts/digital7.ttf)
+    src: url(fonts/digital7.ttf);
+}
+@font-face {
+    font-family: 'eurostile';
+    src: url(fonts/eurostile.TTF);
 }
 
+body {
+    background-color: aliceblue;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -18,17 +25,20 @@ button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     border: solid;
+    border-radius: 5px;
 }
 
 button:active{
     transform: translateY(3px);
 }
 
-button:hover {filter: brightness(120%);}
+button:hover {filter: brightness(130%);}
 
 #calculator {
     border: solid;
+    border-radius: 10px;
     padding: 20px;
+    padding-top: 40px;
     background: rgb(93, 95, 92);
 }
 
@@ -54,8 +64,10 @@ button:hover {filter: brightness(120%);}
 
 }
 
-#calculatorTop {
-    background: black;
+#logo {
+    font-family: eurostile;
+    color: lightgray;
+    font-weight: 200;
 }
 #buttons {
     display: flex;

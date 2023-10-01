@@ -42,7 +42,7 @@ function change () {
 
   if (!isNaN(result)){
     result = result * -1;
-    display.textContent = result;
+    display.textContent = result ;
     expression = result;
   }
 }
