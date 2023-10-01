@@ -58,7 +58,7 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach(function (button) {
   button.addEventListener("click", function () {
-    if (expression.length <8) {
+    if (expression.length <12) {
       if (button.classList.contains("number")) {
         expression += button.textContent;
         display.innerHTML = expression;
@@ -96,10 +96,13 @@ document.getElementById("equals").onclick = function calculate() {
   }
   operator = operator[0];
   let newResult = operate(operator, a, b);
-  if (newResult !== null) {
+  if (newResult !== null && newResult % 1 !=0) {
     result = newResult.toFixed(2);
+  } else {
+    result = newResult;
   }
-  display.textContent = result !== null ? result : "";
+  inputDisplay.textContent = result !== null ? result : "";
+  storedDisplay.textContent = expression + "=";
   expression = "";
   lastInputIsOperator = false; 
   

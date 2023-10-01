@@ -44,20 +44,22 @@ button:hover {filter: brightness(130%);}
 
 #displays {
     display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
+    flex-direction: column-reverse;
+    align-items:flex-end;
     background-color: #DCDCDC;
     border: solid;
     max-width: 250px;
-    max-height: 60px;
+    height: 65px;
     font-family: digital;
-    font-size: 60px;
+    font-size: 40px;
     border-color: black;    
     margin-bottom: 10px;
     background: rgb(125, 140, 115);
 }
 
-
+#storedDisplay {
+    font-size: 20px;
+}
 .calculator {
     display: flex;
     flex-direction: column;
@@ -92,6 +94,11 @@ button:hover {filter: brightness(130%);}
 
 .operator {
     background-color:#FFA500;
+}
+
+#divide {
+    font-size: 20px;
+    vertical-align: middle;
 }
 
 #equals {
