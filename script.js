@@ -21,6 +21,14 @@ function reset() {
     storedDisplay.textContent = "";
 }
 
+document.getElementById("clear").onclick = clearInput;
+
+function clearInput() {
+  let display = document.getElementById("inputDisplay");
+  expression = "";
+  display.textContent = "0";
+}
+
 document.getElementById("percent").onclick = percentage;
 
 function percentage() {
@@ -29,7 +37,7 @@ function percentage() {
 
   if (!isNaN(result)){
     result = (result / 100);
-    display.textContent = result;
+    display.textContent = result.toFixed(11);
     expression = result;
   }
 }
@@ -38,19 +46,14 @@ document.getElementById("convert").onclick = change;
 
 function change () {
   let display = document.getElementById("inputDisplay");
-  let result = parseFloat(display.textContent)
+  let result = parseFloat(display.textContent);
 
   if (!isNaN(result)){
     result = result * -1;
     display.textContent = result ;
     expression = result;
+    lastInputIsOperator = false;
   }
-}
-
-document.getElementById("clear").onclick = clearCurrent;
-
-function clearCurrent (){
-
 }
 
 const display = document.getElementById("inputDisplay");
