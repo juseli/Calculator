@@ -25,9 +25,15 @@ document.getElementById("clear").onclick = clearInput;
 
 function clearInput() {
   let display = document.getElementById("inputDisplay");
-  expression = "";
-  display.textContent = "0";
-}
+  expression = display.textContent;
+  if (expression.length > 0) {
+    expression = expression.slice(0, -1);
+    display.textContent = expression;
+
+    lastInputIsOperator = /[+\-x÷]/.test(expression[expression.length - 1]);
+  }
+};
+
 
 document.getElementById("percent").onclick = percentage;
 
@@ -93,7 +99,7 @@ document.getElementById("equals").onclick = function calculate() {
   let operands = expression.split(/\+|-|\x|\÷/);
   let a = parseFloat(operands[0]);
   let b = parseFloat(operands[1]);
-  let operator = expression.match(/[\+\-\x÷]/);
+  let operator = expression.match(/[\+\-\x\÷]/);
   if (!operator) {
     return;
   }
