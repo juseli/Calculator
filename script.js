@@ -26,12 +26,15 @@ document.getElementById("clear").onclick = clearInput;
 function clearInput() {
   let display = document.getElementById("inputDisplay");
   expression = display.textContent;
-  if (expression.length > 0) {
+  if (expression.length > 1) {
     expression = expression.slice(0, -1);
     display.textContent = expression;
 
     lastInputIsOperator = /[+\-x÷]/.test(expression[expression.length - 1]);
-  }
+
+  } else {
+    expression = "0";
+    display.textContent = expression;}
 };
 
 
