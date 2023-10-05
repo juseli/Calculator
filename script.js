@@ -46,7 +46,7 @@ function percentage() {
 
   if (!isNaN(result)){
     result = (result / 100);
-    display.textContent = result.toFixed(11);
+    display.textContent = result.toFixed(8);
     expression = result;
   }
 }
