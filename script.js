@@ -9,6 +9,7 @@ let expression = "";
 let result = null;
 let operatorCount = 0;
 let lastInputIsOperator = true;
+let previousOperator = null;
 
 document.getElementById("clearAll").onclick = reset;
 
@@ -55,15 +56,23 @@ document.getElementById("convert").onclick = change;
 
 function change () {
   let display = document.getElementById("inputDisplay");
-  let result = parseFloat(display.textContent);
+  let currentInput = parseFloat(display.textContent);
 
   if (!isNaN(result)){
-    result = result * -1;
-    display.textContent = result ;
-    expression = result;
-    lastInputIsOperator = false;
+    let result = parseFloat(currentInput) * -1;
+    display.textContent = result;
+
+    if (expression[0] === '-') {
+      expression = expression.substring(1); 
+    } else {
+      expression = '-' + expression; 
+    }
   }
 }
+
+
+
+
 
 const display = document.getElementById("inputDisplay");
 const buttons = document.querySelectorAll("button");
@@ -91,6 +100,8 @@ buttons.forEach(function (button) {
             display.innerHTML = expression;
             lastInputIsOperator = false; 
           }
+      //  } else if (expression.contains("number") && expression.contains("operator") && button.classList.contains("operator")){
+          
         }
     } 
    }
@@ -99,10 +110,17 @@ buttons.forEach(function (button) {
 
 
 document.getElementById("equals").onclick = function calculate() {
-  let operands = expression.split(/\+|-|\x|\÷/);
+  let operands = expression.split(/[-+\x÷]/);
   let a = parseFloat(operands[0]);
   let b = parseFloat(operands[1]);
-  let operator = expression.match(/[\+\-\x\÷]/);
+  let operator = expression.match(/[-+\x÷]/);
+  if (expression.indexOf(operands[0]) > 0 && expression[expression.indexOf(operands[0]) - 1] === '-') {
+    a *= -1;
+  }
+
+  if (expression.indexOf(operands[1]) > 0 && expression[expression.indexOf(operands[1]) - 1] === '-') {
+    b *= -1;
+  }
   if (!operator) {
     return;
   }
